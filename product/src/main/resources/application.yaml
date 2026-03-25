@@ -1,0 +1,12 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/productdb
+    username: postgres
+    password: postgres
+    jpa:
+      hibernate:
+      ddl-auto: none   # we already created tables in pgAdmin
+      show-sql: true

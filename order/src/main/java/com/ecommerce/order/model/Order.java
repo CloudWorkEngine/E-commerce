@@ -31,4 +31,6 @@ public class Order {
 
     @Column(name="total_amount")
     private Double totalAmount;
+
+
 }

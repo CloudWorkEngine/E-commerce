@@ -1,0 +1,234 @@
+openapi: 3.0.3
+info:
+  title: User Service API
+  description: API definition for the User dataset used in the Customer Data Platform (CDP) pipeline.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8083
+    description: Local User Service
+
+paths:
+
+  /users:
+    get:
+      summary: Get all users
+      tags:
+        - Users
+      responses:
+        "200":
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique user identifier
+      responses:
+        "200":
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: User not found
+
+components:
+  schemas:
+    User:
+      type: object
+      description: A unified representation of a customer profile (User).
+      properties:
+        id:
+          type: string
+          example: "U000001"
+          description: Unique user identifier
+        name:
+          type: string
+          example: "Angel Hill"
+        email:
+          type: string
+          format: email
+          example: "donaldgarcia@example.net"
+        gender:
+          type: string
+          enum: [Male, Female, Other]
+          example: "Other"
+        city:
+          type: string
+          example: "New Roberttown"
+        signupDate:
+          type: string
+          format: date
+          example: "2025-03-13"
+      required:
+        - id
+        - name
+        - email
+        - signupDate
+    Product:
+      type: object
+      description: Product entity
+      properties:
+        product_id:
+          type: string
+          description: Unique product identifier
+          example: "P000001"
+        name:
+          type: string
+          description: Product name
+          example: "Astra Be"
+        category:
+          type: string
+          description: Product category
+          example: "Clothing"
+        brand:
+          type: string
+          description: Product brand
+          example: "Astra"
+        price:
+          type: number
+          format: double
+          description: Product price
+          example: 157.89
+        rating:
+          type: number
+          format: double
+          description: Average customer rating
+          example: 4.08
+      required:
+        - product_id
+        - name
+        - category
+        - brand
+        - price
+    Order:
+      type: object
+      description: Order entity
+      properties:
+        id:
+          type: string
+          description: Unique order identifier
+          example: "O00000123"
+        user:
+          type: string
+          description: User ID associated with the order
+          example: "U0000456"
+        orderDate:
+          type: string
+          format: date-time
+          description: Timestamp when the order was created
+          example: "2025-11-19T14:23:41"
+        orderStatus:
+          type: string
+          description: Status of the order
+          enum:
+            - processing
+            - completed
+            - cancelled
+            - returned
+            - shipped
+          example: "shipped"
+        totalAmount:
+          type: number
+          format: double
+          description: Total monetary value of the order
+          example: 249.99
+      required:
+        - id
+        - user
+        - orderDate
+        - orderStatus
+        - totalAmount
+    Event:
+      type: object
+      description: Event entity representing user interactions with products
+      properties:
+        id:
+          type: string
+          description: Unique event identifier
+          example: "E00001234"
+        user:
+          type: string
+          description: User ID associated with the event
+          example: "U0000456"
+        product:
+          type: string
+          description: Product ID associated with the event
+          example: "P0000789"
+        eventType:
+          type: string
+          description: Type of event
+          enum:
+            - cart
+            - view
+            - wishlist
+            - purchase
+          example: "view"
+        eventTime:
+          type: string
+          format: date-time
+          description: Timestamp of the event
+          example: "2025-11-19T14:23:41"
+      required:
+        - id
+        - user
+        - product
+        - eventType
+        - eventTime
+    OrderItem:
+      type: object
+      description: Order line item representing a purchased product within an order
+      properties:
+        id:
+          type: string
+          description: Unique order item identifier
+          example: "OI00001234"
+        order:
+          type: string
+          description: Order ID this item belongs to
+          example: "O0000456"
+        product:
+          type: string
+          description: Product ID for the purchased item
+          example: "P0000789"
+        user:
+          type: string
+          description: User ID associated with the purchase
+          example: "U0000123"
+        quantity:
+          type: integer
+          description: Quantity of the product purchased
+          example: 2
+        itemPrice:
+          type: number
+          format: double
+          description: Unit price of the product at purchase time
+          example: 49.99
+        itemTotal:
+          type: number
+          format: double
+          description: Total cost for this line item (quantity × itemPrice)
+          example: 99.98
+      required:
+        - id
+        - order
+        - product
+        - user
+        - quantity
+        - itemPrice
+        - itemTotal

@@ -1,11 +1,10 @@
 server:
-  port: 8083
-
+  port: 8087
 spring:
   application:
-    name: user
+    name: review
   datasource:
-    url: jdbc:postgresql://localhost:5432/userdb
+    url: jdbc:postgresql://localhost:5432/reviewdb
     username: postgres
     password: postgres
     jpa:

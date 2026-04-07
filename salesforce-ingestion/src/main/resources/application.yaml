@@ -1,0 +1,22 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: salesforce-ingestion-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+salesforce:
+  auth:
+    base-url: https://orgfarm-fa88a5a61b-dev-ed.develop.my.salesforce.com
+  data-cloud:
+    token-path: /services/a360/token
+    ingest-base-url: https://h04w0zlfhfsgkmbygm4t0njwgp.c360a.salesforce.com
+    source-name: EcommerceSource
+

@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/event/pom.xml" />
         <option value="$PROJECT_DIR$/eureka/pom.xml" />
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/salesforce-ingestion/pom.xml" />
       </list>
     </option>
   </component>

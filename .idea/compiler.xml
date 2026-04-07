@@ -10,7 +10,7 @@
         <module name="eureka" />
         <module name="gateway" />
       </profile>
-      <profile name="Annotation profile for event" enabled="true">
+      <profile name="Annotation profile for salesforce-ingestion" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -18,10 +18,11 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.44/lombok-1.18.44.jar" />
         </processorPath>
         <module name="product" />
+        <module name="review" />
         <module name="event" />
         <module name="user" />
+        <module name="salesforce-ingestion" />
         <module name="cart" />
-        <module name="review" />
         <module name="order" />
       </profile>
     </annotationProcessing>
@@ -35,6 +36,7 @@
       <module name="order" options="-parameters" />
       <module name="product" options="-parameters" />
       <module name="review" options="-parameters" />
+      <module name="salesforce-ingestion" options="-parameters" />
       <module name="user" options="-parameters" />
     </option>
   </component>
